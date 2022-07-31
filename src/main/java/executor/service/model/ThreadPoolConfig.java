@@ -2,12 +2,16 @@ package executor.service.model;
 
 public class ThreadPoolConfig {
 
-    Integer corePoolSize;
-    Long keepAliveTime;
+    private Integer corePoolSize;
+    private Long keepAliveTime;
 
     public ThreadPoolConfig(Integer corePoolSize, Long keepAliveTime) {
         this.corePoolSize = corePoolSize;
         this.keepAliveTime = keepAliveTime;
+    }
+
+    public ThreadPoolConfig() {
+
     }
 
     public Integer getCorePoolSize() {
