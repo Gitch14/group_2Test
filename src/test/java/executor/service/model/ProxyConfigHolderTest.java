@@ -7,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProxyConfigHolderTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     void ProxyTest(){
         ProxyConfigHolder actual = new ProxyConfigHolder(new ProxyNetworkConfig("host",1111), new ProxyCredentials("vlad","1111"));
