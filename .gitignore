@@ -27,6 +27,9 @@ hs_err_pid*
 *.iml
 *.iws
 
+# Test
+src/test/test.iml
+
 # Mac
 .DS_Store
 
