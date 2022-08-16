@@ -1,8 +1,8 @@
 package executor.service.service;
 
-import executor.StepExecution.Property;
-import executor.StepExecution.WebDriverChrome;
-import executor.StepExecution.WebDriverInitializer;
+import executor.service.StepExecution.Property;
+import executor.service.StepExecution.WebDriverChrome;
+import executor.service.StepExecution.WebDriverInitializer;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
