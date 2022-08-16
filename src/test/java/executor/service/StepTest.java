@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 
 public class StepTest {
-    String action = "sleep";
-    String value = "6000:15000";
+    private final String expected = "sleep";
+    private final String value = "6000:15000";
 
     @Test
     public void checkFields() {
-        private final String expected = "sleep";
+
         Step test = new Step();
-        test.setAction(action);
+        test.setAction(expected);
         test.setValue(value);
         String result = test.getAction();
 
