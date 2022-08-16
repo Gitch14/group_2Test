@@ -11,12 +11,12 @@ public class StepTest {
 
     @Test
     public void checkFields() {
-        String actual = "sleep";
+        private final String expected = "sleep";
         Step test = new Step();
         test.setAction(action);
         test.setValue(value);
         String result = test.getAction();
 
-        assertEquals(actual, result);
+        assertEquals(expected, result);
     }
 }
