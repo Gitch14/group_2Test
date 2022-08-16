@@ -27,15 +27,4 @@ public class WebDriverChromeTest {
 
     }
 
-     @Test
-    public void TestChrome() {
-     WebDriverInitializer chrome = new WebDriverChrome();
-        WebDriver browser = chrome.create();
-
-        browser.get("https://monkeylab.com.ua/");
-        List<WebElement> webElements = browser.findElements(By.cssSelector("body > nav:nth-child(2) > div > div.navbar-collapse.offcanvas-nav > ul > li"));
-        assertTrue(webElements.size() == 4);
-
-    }
-
 }
