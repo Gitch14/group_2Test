@@ -13,7 +13,11 @@ public class StepExecutionSleep implements StepExecution {
     }
 
     @Override
-    public void step(WebDriver webDriver, Step step) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(Long.parseLong(step.getValue()));
+    public void step(WebDriver webDriver, Step step) {
+        try {
+            TimeUnit.SECONDS.sleep(Long.parseLong(step.getValue()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
