@@ -1,6 +1,6 @@
 package executor.service.services.impl;
 
-import executor.service.manager.Property;
+import executor.service.util.Property;
 import executor.service.services.WebDriverInitializer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

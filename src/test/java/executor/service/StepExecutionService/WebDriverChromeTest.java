@@ -1,6 +1,6 @@
 package executor.service.StepExecutionService;
 
-import executor.service.manager.Property;
+import executor.service.util.Property;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
