@@ -1,6 +1,6 @@
-package executor.service.StepExecutionService;
+package executor.service;
 
-import executor.service.util.Property;
+import executor.util.Property;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,12 +15,18 @@ public class WebDriverChromeTest {
 
     @Test
     public void TestProperty() {
-        property.connect();
+
     List<String> actual;
     actual = Arrays.asList("test1","test2","test3","test4","test5","test6","test7","test8");
 
          assertEquals(property.connect(),actual);
 
     }
+
+    @Test
+    public void ChromeTest(){
+
+    }
+
 
 }

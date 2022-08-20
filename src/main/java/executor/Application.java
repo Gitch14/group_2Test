@@ -1,4 +1,4 @@
-package executor.service;
+package executor;
 
 /**
  * Hello world!

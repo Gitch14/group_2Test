@@ -1,12 +1,12 @@
-package executor.service.services.impl;
+package executor.service.impl;
 
-import executor.service.util.Property;
-import executor.service.services.WebDriverInitializer;
+import executor.util.Property;
+import executor.service.WebDriverInitializerService;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class WebDriverChrome implements WebDriverInitializer {
+public class WebDriverChromeService implements WebDriverInitializerService {
 
     static {
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");
@@ -20,6 +20,7 @@ public class WebDriverChrome implements WebDriverInitializer {
         property.connect();
         ChromeOptions options = new ChromeOptions();
 
+        options.addArguments(property.connect());
         return new ChromeDriver();
     }
 }
