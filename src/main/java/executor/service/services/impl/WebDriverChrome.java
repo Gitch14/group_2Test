@@ -1,11 +1,12 @@
-package executor.service.StepExecution;
+package executor.service.services.impl;
 
 import executor.service.manager.Property;
+import executor.service.services.WebDriverInitializer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class WebDriverChrome implements WebDriverInitializer{
+public class WebDriverChrome implements WebDriverInitializer {
 
     static {
         System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver");

@@ -1,6 +1,7 @@
-package executor.service.StepExecution;
+package executor.service.services.impl;
 
 import executor.service.model.Step;
+import executor.service.services.StepExecution;
 import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;

@@ -1,7 +1,7 @@
 package executor.service.StepExecutionService;
 
-import executor.service.StepExecution.StepExecution;
-import executor.service.StepExecution.StepExecutionSleep;
+import executor.service.services.StepExecution;
+import executor.service.services.impl.StepExecutionSleep;
 import executor.service.model.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
