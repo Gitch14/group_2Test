@@ -9,7 +9,7 @@ public class StepExecutionServiceClickCssTest {
 
     @Test
     public void ClickCssTest(){
-          WebDriverInitializerService browser = new WebDriverChromeService();
+        WebDriverInitializerService browser = new WebDriverChromeService();
         WebDriver chrome = browser.create();
 
         chrome.get("http://info.cern.ch/");
