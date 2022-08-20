@@ -1,7 +1,5 @@
 package executor.service;
 
-import executor.service.model.Step;
-
 /**
  * Hello world!
  *
