@@ -1,9 +1,10 @@
 package executor.service.StepExecutionService;
 
+import executor.service.StepExecution.StepExecution;
+import executor.service.StepExecution.StepExecutionSleep;
 import executor.service.model.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
