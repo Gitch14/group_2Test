@@ -1,11 +1,12 @@
-package executor.service.StepExecutionService;
+package executor.service.impl;
 
-import executor.service.model.Step;
+import executor.model.Step;
+import executor.service.StepExecutionService;
 import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class StepExecutionSleep implements StepExecution {
+public class StepExecutionServiceSleep implements StepExecutionService {
 
     @Override
     public String getStepAction() {

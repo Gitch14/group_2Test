@@ -1,9 +1,9 @@
-package executor.service.StepExecution;
+package executor.service;
 
-import executor.service.model.Step;
+import executor.model.Step;
 import org.openqa.selenium.WebDriver;
 
-public interface StepExecution {
+public interface StepExecutionService {
     public String getStepAction();
     public void step(WebDriver webDriver, Step step);
 }

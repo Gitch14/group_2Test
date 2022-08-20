@@ -1,12 +1,7 @@
-package executor.service.service;
+package executor.service;
 
-import executor.service.StepExecution.Property;
-import executor.service.StepExecution.WebDriverChrome;
-import executor.service.StepExecution.WebDriverInitializer;
+import executor.util.Property;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,12 +15,18 @@ public class WebDriverChromeTest {
 
     @Test
     public void TestProperty() {
-        property.connect();
+
     List<String> actual;
     actual = Arrays.asList("test1","test2","test3","test4","test5","test6","test7","test8");
 
          assertEquals(property.connect(),actual);
 
     }
+
+    @Test
+    public void ChromeTest(){
+
+    }
+
 
 }

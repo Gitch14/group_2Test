@@ -1,27 +1,27 @@
-package executor.service.StepExecutionService;
+package executor.service;
 
-import executor.service.model.Step;
+import executor.service.impl.StepExecutionServiceSleep;
+import executor.model.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StepExecutionSleepTest {
+class StepExecutionServiceSleepTest {
     private static final String STEP_EXECUTION_EXPECTED = "sleep";
 
-    private StepExecution stepExecution;
+    private StepExecutionService stepExecutionService;
     private Step step;
 
     @BeforeEach
     void setUp() {
-        stepExecution = new StepExecutionSleep();
+        stepExecutionService = new StepExecutionServiceSleep();
         step = new Step(STEP_EXECUTION_EXPECTED, "5");
     }
 
     @Test
     void getStepAction() {
-        assertEquals(STEP_EXECUTION_EXPECTED, stepExecution.getStepAction(), "Step action wrong for Sleep");
+        assertEquals(STEP_EXECUTION_EXPECTED, stepExecutionService.getStepAction(), "Step action wrong for Sleep");
     }
 
     @Test
@@ -29,7 +29,7 @@ class StepExecutionSleepTest {
         int expected = Integer.parseInt(step.getValue());
 
         long start = System.currentTimeMillis();
-        stepExecution.step(null, step);
+        stepExecutionService.step(null, step);
         long finish = System.currentTimeMillis();
         int actual = (int) (finish-start)/ 1000;
         assertEquals(expected, actual, "Sleep works incorrectly");

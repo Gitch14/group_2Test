@@ -1,6 +1,5 @@
-package executor.service.model;
+package executor.model;
 
-import executor.service.model.Step;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
