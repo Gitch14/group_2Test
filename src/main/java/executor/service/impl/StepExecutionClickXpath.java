@@ -21,7 +21,7 @@ public class StepExecutionClickXpath implements StepExecutionService {
         }
         try {
             WebElement webElement = webDriver.findElement(By.xpath(step.getValue()));
-            if (webElement != null) {
+            if (webElement.isEnabled()) {
                 webElement.click();
             }
         } catch (Exception e) {

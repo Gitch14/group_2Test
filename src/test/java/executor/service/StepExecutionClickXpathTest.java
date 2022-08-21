@@ -36,7 +36,7 @@ public class StepExecutionClickXpathTest {
         StepExecutionClickXpath clickXpathTest = new StepExecutionClickXpath();
         step = new Step("clickxpath", value);
         clickXpathTest.step(driver, step);
-        TimeUnit.SECONDS.sleep(10L);
+        TimeUnit.SECONDS.sleep(5L);
         WebElement element = driver.findElement(By.xpath("//h1[@class='portal__heading ng-star-inserted']"));
         assertThat(element.isEnabled(), is(true));
         driver.close();
