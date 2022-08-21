@@ -1,5 +1,10 @@
 package executor.util;
 
+<<<<<<< HEAD
+=======
+import org.apache.log4j.Logger;
+
+>>>>>>> 0798927ab789ce30b3cc791e9a7bdf49d0ea351e
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,7 +13,11 @@ import java.util.List;
 import java.util.Properties;
 
 public class Property {
+<<<<<<< HEAD
 
+=======
+final static Logger logger = Logger.getLogger(Property.class);
+>>>>>>> 0798927ab789ce30b3cc791e9a7bdf49d0ea351e
     Properties property = new Properties();
 
 
@@ -26,8 +35,13 @@ public class Property {
                 String pageLoadTimeout = property.getProperty("WebDriverConfig.pageLoadTimeout");
                 String implicitlyWait = property.getProperty("WebDriverConfig.implicitlyWait");
 
+<<<<<<< HEAD
 
                 System.out.println("username: " + username
+=======
+                logger.info(
+                        "username: " + username
+>>>>>>> 0798927ab789ce30b3cc791e9a7bdf49d0ea351e
                         + ", password: " + password
                         + ", host: " + hostname
                         + ", port: " + port
