@@ -1,4 +1,4 @@
-package executor.service.StepExecutionTest;
+package executor.service;
 
 import executor.model.Step;
 import executor.service.impl.StepExecutionClickXpath;
