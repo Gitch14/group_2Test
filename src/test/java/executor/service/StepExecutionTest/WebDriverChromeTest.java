@@ -1,9 +1,8 @@
 package executor.service.StepExecutionTest;
 
-import executor.service.StepExecution.Property;
+import executor.util.Property;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
