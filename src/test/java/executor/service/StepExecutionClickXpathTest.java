@@ -30,7 +30,8 @@ public class StepExecutionClickXpathTest {
 
     @Test
     public void checkStepClickXpath() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        TimeUnit.SECONDS.sleep(5L);
         WebDriver driver = new ChromeDriver();
         driver.get("https://rozetka.com.ua/");
         StepExecutionClickXpath clickXpathTest = new StepExecutionClickXpath();
