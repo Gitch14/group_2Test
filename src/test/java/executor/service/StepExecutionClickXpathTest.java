@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,9 +31,14 @@ public class StepExecutionClickXpathTest {
 
     @Test
     public void checkStepClickXpath() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        /*System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         TimeUnit.SECONDS.sleep(5L);
         WebDriver driver = new ChromeDriver();
+        driver.get("https://rozetka.com.ua/");*/
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("useAutomationExtension", false);
+        WebDriver driver = new ChromeDriver(options);
         driver.get("https://rozetka.com.ua/");
         StepExecutionClickXpath clickXpathTest = new StepExecutionClickXpath();
         step = new Step("clickxpath", value);
