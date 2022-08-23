@@ -15,39 +15,27 @@ import java.util.concurrent.TimeUnit;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 
 public class StepExecutionClickXpathTest {
-    private StepExecutionService stepExecutionService;
-    private Step step;
-    private String value = "//li[@class='menu-categories__item ng-star-inserted']/a[contains(text(), 'Ноутбуки та комп’ютери')]";
 
     @Test
-    void checkGetStepAction() {
-        step = new Step("clickxpath", value);
-        stepExecutionService = new StepExecutionClickXpath();
-        assertEquals("Step action is wrong", stepExecutionService.getStepAction(), "clickxpath");
+    void testGetStepAction() {
+        Step step = new Step("clickXpath", "value");
+        StepExecutionClickXpath stepExecutionClickXpath = StepExecutionClickXpath.getInstance();
+        assertEquals("Step action is wrong", stepExecutionClickXpath.getStepAction(), "clickXpath");
     }
 
     @Test
-    public void checkStepClickXpath() throws InterruptedException {
-        /*System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-        TimeUnit.SECONDS.sleep(5L);
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://rozetka.com.ua/");*/
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("useAutomationExtension", false);
-        WebDriver driver = new ChromeDriver(options);
-        driver.get("https://rozetka.com.ua/");
-        StepExecutionClickXpath clickXpathTest = new StepExecutionClickXpath();
-        step = new Step("clickxpath", value);
-        clickXpathTest.step(driver, step);
-        TimeUnit.SECONDS.sleep(5L);
-        WebElement element = driver.findElement(By.xpath("//h1[@class='portal__heading ng-star-inserted']"));
-        assertThat(element.isEnabled(), is(true));
-        driver.close();
-        driver.quit();
+    public void testStepClickXpath() {
+        StepExecutionClickXpath stepExecutionClickXpath = StepExecutionClickXpath.getInstance();
+        WebDriver webDriver = mock(WebDriver.class);
+        Step step = new Step("clickXpath","/html/body/p");
+        stepExecutionClickXpath.step(webDriver,step);
+        verify(webDriver, times(1)).
+                findElement(By.xpath(step.getValue()));
     }
 
 

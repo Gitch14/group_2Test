@@ -8,10 +8,24 @@ import org.openqa.selenium.WebElement;
 
 
 public class StepExecutionClickXpath implements StepExecutionService {
+    private static volatile StepExecutionClickXpath INSTANCE;
+
+    private StepExecutionClickXpath(){};
+
+    public static StepExecutionClickXpath getInstance(){
+        if(INSTANCE == null) {
+            synchronized (StepExecutionClickXpath.class) {
+                if(INSTANCE == null) {
+                    INSTANCE = new StepExecutionClickXpath();
+                }
+            }
+        }
+        return INSTANCE;
+    }
 
     @Override
     public String getStepAction() {
-        return "clickxpath";
+        return "clickXpath";
     }
 
     @Override
