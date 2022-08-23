@@ -2,23 +2,43 @@ package executor.service.impl;
 
 import executor.model.Step;
 import executor.service.StepExecutionService;
-import executor.service.WebDriverInitializerService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class StepExecutionServiceClickCss implements StepExecutionService {
+    private static volatile StepExecutionServiceClickCss INSTANCE;
+
+    private StepExecutionServiceClickCss(){};
+
+    public static StepExecutionServiceClickCss getInstance(){
+        if(INSTANCE == null) {
+            synchronized (StepExecutionServiceClickCss.class) {
+                if(INSTANCE == null) {
+                    INSTANCE = new StepExecutionServiceClickCss();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
     @Override
     public String getStepAction() {
-        return "Click";
+        return "ClickCss";
     }
 
     @Override
     public void step(WebDriver webDriver, Step step) {
-        WebDriverInitializerService browser = new WebDriverChromeService();
-        WebDriver chrome = browser.create();
-
-        chrome.get("http://info.cern.ch/");
-
-        chrome.findElement(By.cssSelector(step.getValue())).click();
+        if (webDriver == null || step == null) {
+            return;
+        }
+        try {
+            WebElement webElement = webDriver.findElement(By.cssSelector(step.getValue()));
+            if (webElement.isEnabled()) {
+                webElement.click();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
