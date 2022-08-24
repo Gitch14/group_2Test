@@ -23,10 +23,4 @@ public class WebDriverChromeTest {
 
     }
 
-    @Test
-    public void ChromeTest(){
-
-    }
-
-
 }
