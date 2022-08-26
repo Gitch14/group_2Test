@@ -25,8 +25,7 @@ public class ScenarioExecutorService implements executor.service.ExecutorService
                     service = StepExecutionServiceSleep.getInstance();
                     break;
                 case "clickXpath":
-                    // todo
-                    // service = StepExecutionClickXpath.getInstance();
+                    service = StepExecutionClickXpath.getInstance();
                     break;
                 default:
                     service.step(webDriver, step);
