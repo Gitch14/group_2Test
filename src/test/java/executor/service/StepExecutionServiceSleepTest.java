@@ -15,7 +15,7 @@ class StepExecutionServiceSleepTest {
 
     @BeforeEach
     void setUp() {
-        stepExecutionService = new StepExecutionServiceSleep();
+        stepExecutionService = StepExecutionServiceSleep.getInstance();
         step = new Step(STEP_EXECUTION_EXPECTED, "5");
     }
 
