@@ -12,13 +12,13 @@ public class DIFactory implements Factory {
 
     final static Logger logger = Logger.getLogger(DIFactory.class);
 
-    private static final Map<Class, Object> mapOfSingletons = new HashMap<>();
+    private static final Map<Class<?>, Object> mapOfSingletons = new HashMap<>();
 
     @Override
     public <T> T getInstance(Class<T> clazz) {
 
         if (StepExecutionServiceSleep.class.isAssignableFrom(clazz)) {
-            return (T) mapOfSingletons.getOrDefault(clazz, new StepExecutionServiceSleep());
+            return (T) mapOfSingletons.getOrDefault(clazz, StepExecutionServiceSleep.getInstance());
         }
 
 /*
