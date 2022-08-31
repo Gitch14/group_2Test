@@ -21,6 +21,6 @@ class ScenarioSourceListenerServiceTest {
 
     @Test
     void execute() {
-        assertEquals(scenarios.get(1).getName(), "test scenario 2", "JSON mapper work incorrectly");
+        assertEquals(scenarios.get(1).getName(), "test scenario 2", "JSON mapper works incorrectly");
     }
 }
