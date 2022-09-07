@@ -3,7 +3,6 @@ package executor.service.impl;
 import executor.model.Scenario;
 import org.junit.jupiter.api.Test;
 
-import java.net.URISyntaxException;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
