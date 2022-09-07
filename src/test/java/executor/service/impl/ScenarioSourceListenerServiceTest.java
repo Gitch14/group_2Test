@@ -1,26 +1,21 @@
 package executor.service.impl;
 
 import executor.model.Scenario;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.net.URISyntaxException;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScenarioSourceListenerServiceTest {
 
     private final ScenarioSourceListenerService scenarioSourceListener = new ScenarioSourceListenerService();
-    private List<Scenario> scenarios;
-
-    @BeforeEach
-    void setUp() {
-        scenarioSourceListener.execute();
-        scenarios = scenarioSourceListener.getScenarios();
-    }
 
     @Test
-    void execute() {
-        assertEquals(scenarios.get(1).getName(), "test scenario 2", "JSON mapper works incorrectly");
+    void execute() throws URISyntaxException {
+        Queue<Scenario> scenarios = scenarioSourceListener.execute();
+        scenarios.poll(); // to remove first element for testing second element
+        assertEquals(scenarios.poll().getName(), "test scenario 2", "JSON mapper works incorrectly");
     }
 }

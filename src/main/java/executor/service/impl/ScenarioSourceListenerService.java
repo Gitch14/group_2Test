@@ -8,33 +8,27 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ScenarioSourceListenerService implements ScenarioSourceListener {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private List<Scenario> scenarios;
-
     @Override
-    public void execute() {
+    public Queue<Scenario> execute() {
+        Queue<Scenario> scenarios = new ConcurrentLinkedQueue();
         try {
-            scenarios = new ArrayList<>();
             URL resource = this.getClass().getClassLoader().getResource("scenarios.json");
 
-            if (resource == null)
-                return;
-
-            File file = new File(resource.toURI());
-            scenarios = List.of(objectMapper.readValue(file, Scenario[].class));
+            if (resource != null) {
+                File file = new File(resource.toURI());
+                scenarios.addAll(List.of(objectMapper.readValue(file, Scenario[].class)));
+            }
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public List<Scenario> getScenarios() {
         return scenarios;
     }
 }
