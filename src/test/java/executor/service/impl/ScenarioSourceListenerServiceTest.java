@@ -13,7 +13,7 @@ class ScenarioSourceListenerServiceTest {
     private final ScenarioSourceListenerService scenarioSourceListener = new ScenarioSourceListenerService();
 
     @Test
-    void execute() throws URISyntaxException {
+    void execute() {
         Queue<Scenario> scenarios = scenarioSourceListener.execute();
         scenarios.poll(); // to remove first element for testing second element
         assertEquals(scenarios.poll().getName(), "test scenario 2", "JSON mapper works incorrectly");
