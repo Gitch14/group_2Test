@@ -31,4 +31,8 @@ public class ScenarioSourceListenerService implements ScenarioSourceListener {
         }
         return scenarios;
     }
+
+    public Queue<Scenario> getScenarios() {
+        return execute();
+    }
 }
