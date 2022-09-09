@@ -15,11 +15,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class ScenarioSourceListenerService implements ScenarioSourceListener {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private Queue<Scenario> scenarios;
 
     @Override
-    public void execute() {
-        scenarios = new ConcurrentLinkedQueue();
+    public Queue<Scenario> execute() {
+        Queue<Scenario> scenarios = new ConcurrentLinkedQueue<>();
         try {
             URL resource = this.getClass().getClassLoader().getResource("scenarios.json");
 
@@ -30,10 +29,6 @@ public class ScenarioSourceListenerService implements ScenarioSourceListener {
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public Queue<Scenario> getScenarios() {
-        execute();
         return scenarios;
     }
 }
