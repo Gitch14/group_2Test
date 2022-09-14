@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class StepExecutionServiceSleep implements StepExecutionService {
     private static volatile StepExecutionServiceSleep INSTANCE;
+    private static final String STEP_ACTION = "sleep";
 
     private StepExecutionServiceSleep(){};
 
@@ -24,7 +25,7 @@ public class StepExecutionServiceSleep implements StepExecutionService {
     
     @Override
     public String getStepAction() {
-        return "sleep";
+        return STEP_ACTION;
     }
 
     @Override
