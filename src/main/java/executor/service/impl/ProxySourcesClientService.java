@@ -12,15 +12,14 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.Random;
 
 public class ProxySourcesClientService implements ProxySourcesClient {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Queue<ProxyConfigHolder> getProxy() {
+    public ProxyConfigHolder getProxy() {
         List<ProxyCredentials> credentials = new ArrayList<>();
         List<ProxyNetworkConfig> network = new ArrayList<>();
         try {
@@ -37,13 +36,10 @@ public class ProxySourcesClientService implements ProxySourcesClient {
             e.printStackTrace();
         }
 
-        Queue<ProxyConfigHolder> proxyConfigHolders = new ConcurrentLinkedQueue<>();
-        for (int i = 0; i < Math.max(credentials.size(), network.size()); i++) {
-            ProxyNetworkConfig proxyNetworkConfig = network.size() > i ? network.get(i) : null;
-            ProxyCredentials proxyCredentials =  credentials.size() > i ? credentials.get(i) : null;
-            proxyConfigHolders.add(new ProxyConfigHolder(proxyNetworkConfig, proxyCredentials));
-        }
+        Random random = new Random();
+        int randNetwork = random.nextInt(network.size());
+        int randCredential = random.nextInt(credentials.size());
 
-        return proxyConfigHolders;
+        return new ProxyConfigHolder(network.get(randNetwork), credentials.get(randCredential));
     }
 }
