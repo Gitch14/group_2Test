@@ -1,5 +1,7 @@
 package executor.util;
 
+import executor.model.ThreadPoolConfig;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -25,7 +27,11 @@ public class Property {
         }
     }
 
-
+public static ThreadPoolConfig readThreadPoolConfig() {
+        Integer poolSize = Integer.parseInt(Property.getProperty("ThreadPoolConfig.corePoolSize"));
+        Long aliveTime = Long.parseLong(Property.getProperty("ThreadPoolConfig.keepAliveTime"));
+        return new ThreadPoolConfig(poolSize, aliveTime);
+    }
     public static String getProperty(String key) {
         return PROPERTIES.getProperty(key);
     }

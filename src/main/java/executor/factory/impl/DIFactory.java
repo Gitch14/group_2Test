@@ -1,18 +1,12 @@
 package executor.factory.impl;
 
-
+import executor.facade.impl.ParallelFlowExecuteService;
 import executor.factory.Factory;
-import executor.service.impl.StepExecutionServiceSleep;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-
+import executor.service.impl.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DIFactory implements Factory {
-
-    final static Logger logger = LogManager.getLogger(DIFactory.class);
 
     private static final Map<Class<?>, Object> mapOfSingletons = new HashMap<>();
 
@@ -23,66 +17,36 @@ public class DIFactory implements Factory {
             return (T) mapOfSingletons.getOrDefault(clazz, StepExecutionServiceSleep.getInstance());
         }
 
-/*
-
-    //TODO use and refactor this when all classes will be created (and facade)
-
         if (StepExecutionServiceClickCss.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new StepExecutionServiceClickCss());
+            return (T)mapOfSingletons.getOrDefault(clazz, StepExecutionServiceClickCss.getInstance());
         }
 
-        if (StepExecutionServiceClickXpath.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new StepExecutionServiceClickXpath());
+        if (StepExecutionClickXpath.class.isAssignableFrom(clazz)) {
+            return (T)mapOfSingletons.getOrDefault(clazz, StepExecutionClickXpath.getInstance());
         }
 
-        if (ScenarioExecutor.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new ScenarioExecutor());
+        if (ScenarioExecutorService.class.isAssignableFrom(clazz)) {
+            return (T)mapOfSingletons.getOrDefault(clazz, new ScenarioExecutorService());
         }
 
-        if (ProxySourcesClient.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new ProxySourcesClient());
+        if (ProxySourcesClientService.class.isAssignableFrom(clazz)) {
+            return (T)mapOfSingletons.getOrDefault(clazz, new ProxySourcesClientService());
         }
 
-        if (ExecutionService.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new ExecutionService());
+        if (ScenarioExecutorService.class.isAssignableFrom(clazz)) {
+            return (T)mapOfSingletons.getOrDefault(clazz, new ScenarioExecutorService());
         }
 
-        if (ParallelFlowExecutorService.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new ParallelFlowExecutorService());
+        if (ParallelFlowExecuteService.class.isAssignableFrom(clazz)) {
+            return (T)mapOfSingletons.getOrDefault(clazz, ParallelFlowExecuteService.getInstance());
         }
 
-        if (ScenarioSourceListener.class.isAssignableFrom(clazz)) {
-            return (T)mapOfSingletons.getOrDefault(clazz, new ScenarioSourceListener());
+        if (ScenarioSourceListenerService.class.isAssignableFrom(clazz)) {
+            return (T)mapOfSingletons.getOrDefault(clazz, new ScenarioExecutorService());
         }
-
-*/
 
         throw new RuntimeException("Please, check class name before creation in factory");
     }
-
-/*
-
-    private Object getProxy(Class clazz) {
-        return Proxy
-                .newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new InvocationHandler() {
-                    @Override
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        logger.info(Arrays.toString(clazz.getInterfaces()));
-
-                        for (Constructor<?> constructor : clazz.getConstructors()) {
-                            logger.info((Arrays.toString(constructor.getParameters())));
-                        }
-
-                        for (Parameter par : method.getParameters()) {
-                            logger.info((par.getType() + " " + par.getName()));
-                        }
-
-                        return null;
-                    }
-                });
-    }
-
-*/
 
 }
 
