@@ -4,30 +4,26 @@ import executor.model.Scenario;
 import executor.model.Step;
 
 import executor.service.StepExecutionService;
+
 import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 
-public class ScenarioExecutorService implements executor.service.ExecutorService
-{
-    public void execute(Scenario scenario, WebDriver webDriver)
-    {
+public class ScenarioExecutorService implements executor.service.ExecutorService {
+    public void execute(Scenario scenario, WebDriver webDriver) {
         List<Step> steps = scenario.getSteps();
-        for (Step step : steps)
-        {
+        for (Step step : steps) {
             String action = step.getAction();
+
             StepExecutionService service = null;
-            switch (action)
-            {
-                case "clickCss":
-                    service = StepExecutionServiceClickCss.getInstance();
-                    break;
-                case "sleep":
-                    service = StepExecutionServiceSleep.getInstance();
-                    break;
-                case "clickXpath":
-                    service = StepExecutionClickXpath.getInstance();
-                    break;
+            if (action.equalsIgnoreCase("clickCss")) {
+                service = StepExecutionServiceClickCss.getInstance();
+            } else if (action.equalsIgnoreCase("sleep")) {
+                service = StepExecutionServiceSleep.getInstance();
+            } else if (action.equalsIgnoreCase("clickXpath")) {
+                service = StepExecutionClickXpath.getInstance();
             }
+
             service.step(webDriver, step);
         }
     }
