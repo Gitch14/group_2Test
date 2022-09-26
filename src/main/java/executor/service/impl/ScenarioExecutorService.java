@@ -18,7 +18,7 @@ public class ScenarioExecutorService implements executor.service.ExecutorService
             StepExecutionService service = null;
             switch (action)
             {
-                case "clickCSS":
+                case "clickCss":
                     service = StepExecutionServiceClickCss.getInstance();
                     break;
                 case "sleep":
@@ -27,9 +27,8 @@ public class ScenarioExecutorService implements executor.service.ExecutorService
                 case "clickXpath":
                     service = StepExecutionClickXpath.getInstance();
                     break;
-                default:
-                    service.step(webDriver, step);
             }
+            service.step(webDriver, step);
         }
     }
 }
