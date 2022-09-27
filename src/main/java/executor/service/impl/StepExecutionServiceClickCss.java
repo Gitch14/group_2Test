@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class StepExecutionServiceClickCss implements StepExecutionService {
     private static volatile StepExecutionServiceClickCss INSTANCE;
+    private static final String STEP_ACTION = "ClickCss";
 
     private StepExecutionServiceClickCss() {
     }
@@ -25,7 +26,7 @@ public class StepExecutionServiceClickCss implements StepExecutionService {
 
     @Override
     public String getStepAction() {
-        return "ClickCss";
+        return STEP_ACTION;
     }
 
     @Override

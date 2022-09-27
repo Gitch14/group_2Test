@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 public class StepExecutionClickXpath implements StepExecutionService {
     private static volatile StepExecutionClickXpath INSTANCE;
+    private static final String STEP_ACTION = "clickXpath";
 
     private StepExecutionClickXpath() {
     }
@@ -26,7 +27,7 @@ public class StepExecutionClickXpath implements StepExecutionService {
 
     @Override
     public String getStepAction() {
-        return "clickXpath";
+        return STEP_ACTION;
     }
 
     @Override

@@ -3,14 +3,16 @@ package executor.factory.impl;
 
 import executor.factory.Factory;
 import executor.service.impl.StepExecutionServiceSleep;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class DIFactory implements Factory {
 
-    final static Logger logger = Logger.getLogger(DIFactory.class);
+    final static Logger logger = LogManager.getLogger(DIFactory.class);
 
     private static final Map<Class<?>, Object> mapOfSingletons = new HashMap<>();
 
