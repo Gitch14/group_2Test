@@ -10,12 +10,13 @@ public class StepExecutionServiceClickCss implements StepExecutionService {
     private static volatile StepExecutionServiceClickCss INSTANCE;
     private static final String STEP_ACTION = "ClickCss";
 
-    private StepExecutionServiceClickCss(){};
+    private StepExecutionServiceClickCss() {
+    }
 
-    public static StepExecutionServiceClickCss getInstance(){
-        if(INSTANCE == null) {
+    public static StepExecutionServiceClickCss getInstance() {
+        if (INSTANCE == null) {
             synchronized (StepExecutionServiceClickCss.class) {
-                if(INSTANCE == null) {
+                if (INSTANCE == null) {
                     INSTANCE = new StepExecutionServiceClickCss();
                 }
             }

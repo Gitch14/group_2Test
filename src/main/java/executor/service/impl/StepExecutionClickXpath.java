@@ -11,12 +11,13 @@ public class StepExecutionClickXpath implements StepExecutionService {
     private static volatile StepExecutionClickXpath INSTANCE;
     private static final String STEP_ACTION = "clickXpath";
 
-    private StepExecutionClickXpath(){};
+    private StepExecutionClickXpath() {
+    }
 
-    public static StepExecutionClickXpath getInstance(){
-        if(INSTANCE == null) {
+    public static StepExecutionClickXpath getInstance() {
+        if (INSTANCE == null) {
             synchronized (StepExecutionClickXpath.class) {
-                if(INSTANCE == null) {
+                if (INSTANCE == null) {
                     INSTANCE = new StepExecutionClickXpath();
                 }
             }

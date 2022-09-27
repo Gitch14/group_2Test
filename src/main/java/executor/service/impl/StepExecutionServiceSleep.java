@@ -10,19 +10,20 @@ public class StepExecutionServiceSleep implements StepExecutionService {
     private static volatile StepExecutionServiceSleep INSTANCE;
     private static final String STEP_ACTION = "sleep";
 
-    private StepExecutionServiceSleep(){};
+    private StepExecutionServiceSleep() {
+    }
 
-    public static StepExecutionServiceSleep getInstance(){
-        if(INSTANCE == null) {
+    public static StepExecutionServiceSleep getInstance() {
+        if (INSTANCE == null) {
             synchronized (StepExecutionServiceSleep.class) {
-                if(INSTANCE == null) {
+                if (INSTANCE == null) {
                     INSTANCE = new StepExecutionServiceSleep();
                 }
             }
         }
         return INSTANCE;
     }
-    
+
     @Override
     public String getStepAction() {
         return STEP_ACTION;
