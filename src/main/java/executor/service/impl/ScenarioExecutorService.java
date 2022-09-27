@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ScenarioExecutorService implements executor.service.ExecutorService {
     public void execute(Scenario scenario, WebDriver webDriver) {
+        webDriver.get(scenario.getSite());
         List<Step> steps = scenario.getSteps();
         for (Step step : steps) {
             String action = step.getAction();
