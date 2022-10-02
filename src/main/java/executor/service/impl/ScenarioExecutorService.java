@@ -8,8 +8,29 @@ import executor.service.StepExecutionService;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ScenarioExecutorService implements executor.service.ExecutorService {
+
+    private StepExecutionServiceClickCss stepExecutionServiceClickCss;
+    private StepExecutionClickXpath stepExecutionClickXpath;
+    private StepExecutionServiceSleep stepExecutionServiceSleep;
+
+    @Autowired
+    public ScenarioExecutorService(StepExecutionServiceClickCss stepExecutionServiceClickCss,
+                                   StepExecutionClickXpath stepExecutionClickXpath,
+                                   StepExecutionServiceSleep stepExecutionServiceSleep) {
+        this.stepExecutionServiceClickCss = stepExecutionServiceClickCss;
+        this.stepExecutionClickXpath = stepExecutionClickXpath;
+        this.stepExecutionServiceSleep = stepExecutionServiceSleep;
+    }
+
+    public ScenarioExecutorService() {
+
+    }
+
     public void execute(Scenario scenario, WebDriver webDriver) {
         webDriver.get(scenario.getSite());
         List<Step> steps = scenario.getSteps();
@@ -18,14 +39,17 @@ public class ScenarioExecutorService implements executor.service.ExecutorService
 
             StepExecutionService service = null;
             if (action.equalsIgnoreCase("clickCss")) {
-                service = StepExecutionServiceClickCss.getInstance();
+                service = stepExecutionServiceClickCss;
             } else if (action.equalsIgnoreCase("sleep")) {
-                service = StepExecutionServiceSleep.getInstance();
+                service = stepExecutionServiceSleep;
             } else if (action.equalsIgnoreCase("clickXpath")) {
-                service = StepExecutionClickXpath.getInstance();
+                service = stepExecutionClickXpath;
             }
 
-            service.step(webDriver, step);
+            if (service != null) {
+                service.step(webDriver, step);
+            }
         }
     }
+
 }

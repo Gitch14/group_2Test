@@ -10,8 +10,8 @@ public class WebDriverConfig {
     private Long pageLoadTimeout;
     private Long implicitlyWait;
 
-
     public WebDriverConfig() {
+
     }
 
     public WebDriverConfig(String webDriverExecutable, String userAgent, Long pageLoadTimeout, Long implicitlyWait) {
@@ -74,10 +74,14 @@ public class WebDriverConfig {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder()
-                .append("WebDriverConfig : { ").append("webDriverExecutable = ").append(webDriverExecutable)
-                .append(", ").append("userAgent = ").append(userAgent)
-                .append(", ").append("pageLoadTimeout = ").append(pageLoadTimeout)
-                .append(", ").append("implicitlyWait = ").append(implicitlyWait)
+                .append("WebDriverConfig : { " + "webDriverExecutable = ")
+                .append(webDriverExecutable)
+                .append(", userAgent = ")
+                .append(userAgent)
+                .append(", pageLoadTimeout = ")
+                .append(pageLoadTimeout)
+                .append(", implicitlyWait = ")
+                .append(implicitlyWait)
                 .append(" }");
         return stringBuilder.toString();
     }

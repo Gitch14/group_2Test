@@ -5,23 +5,15 @@ import executor.service.StepExecutionService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StepExecutionServiceClickCss implements StepExecutionService {
-    private static volatile StepExecutionServiceClickCss INSTANCE;
+
     private static final String STEP_ACTION = "ClickCss";
 
-    private StepExecutionServiceClickCss() {
-    }
+    public StepExecutionServiceClickCss() {
 
-    public static StepExecutionServiceClickCss getInstance() {
-        if (INSTANCE == null) {
-            synchronized (StepExecutionServiceClickCss.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new StepExecutionServiceClickCss();
-                }
-            }
-        }
-        return INSTANCE;
     }
 
     @Override

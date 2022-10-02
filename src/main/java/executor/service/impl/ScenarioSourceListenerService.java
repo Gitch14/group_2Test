@@ -1,8 +1,10 @@
 package executor.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import executor.model.Scenario;
 import executor.service.ScenarioSourceListener;
+import executor.util.ObjectMapperUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,9 +14,19 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@Service
 public class ScenarioSourceListenerService implements ScenarioSourceListener {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapperUtil objectMapperUtil;
+
+    @Autowired
+    public ScenarioSourceListenerService(ObjectMapperUtil objectMapperUtil) {
+        this.objectMapperUtil = objectMapperUtil;
+    }
+
+    public ScenarioSourceListenerService() {
+
+    }
 
     @Override
     public Queue<Scenario> execute() {
@@ -24,7 +36,7 @@ public class ScenarioSourceListenerService implements ScenarioSourceListener {
 
             if (resource != null) {
                 File file = new File(resource.toURI());
-                scenarios.addAll(List.of(objectMapper.readValue(file, Scenario[].class)));
+                scenarios.addAll(List.of(objectMapperUtil.getObjectMapper().readValue(file, Scenario[].class)));
             }
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();

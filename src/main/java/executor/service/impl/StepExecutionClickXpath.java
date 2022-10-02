@@ -5,29 +5,20 @@ import executor.service.StepExecutionService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class StepExecutionClickXpath implements StepExecutionService {
-    private static volatile StepExecutionClickXpath INSTANCE;
+
     private static final String STEP_ACTION = "clickXpath";
-
-    private StepExecutionClickXpath() {
-    }
-
-    public static StepExecutionClickXpath getInstance() {
-        if (INSTANCE == null) {
-            synchronized (StepExecutionClickXpath.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new StepExecutionClickXpath();
-                }
-            }
-        }
-        return INSTANCE;
-    }
 
     @Override
     public String getStepAction() {
         return STEP_ACTION;
+    }
+
+    public StepExecutionClickXpath() {
+
     }
 
     @Override

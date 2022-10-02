@@ -1,32 +1,24 @@
 package executor.facade.impl;
 
 import executor.facade.ParallelFlowExecute;
-import executor.model.ThreadPoolConfig;
-import executor.util.Property;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+@Service
 public class ParallelFlowExecuteService implements ParallelFlowExecute {
-    private static final ParallelFlowExecuteService INSTANCE;
-    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR;
 
-    protected ParallelFlowExecuteService() {  }
+    @Value("${ThreadPoolConfig.corePoolSize}")
+    private Integer corePoolSize;
 
-    static {
-        ThreadPoolConfig poolConfig = Property.readThreadPoolConfig();
-        THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(
-                poolConfig.getCorePoolSize(),
-                poolConfig.getCorePoolSize(),
-                poolConfig.getKeepAliveTime(),
-                TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<>()
-        );
-        INSTANCE = new ParallelFlowExecuteService();
-    }
+    @Value("${ThreadPoolConfig.keepAliveTime}")
+    private Integer keepAliveTime;
 
-    public static ParallelFlowExecuteService getInstance() {
-        return INSTANCE;
+    public ParallelFlowExecuteService() {
+
     }
 
     @Override
@@ -38,7 +30,9 @@ public class ParallelFlowExecuteService implements ParallelFlowExecute {
         if (testCallBack != null) {
             testCallBack.run();
         } else {
-            THREAD_POOL_EXECUTOR.submit(task);
+            ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
+                    corePoolSize, keepAliveTime, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+            threadPoolExecutor.submit(task);
         }
     }
 }

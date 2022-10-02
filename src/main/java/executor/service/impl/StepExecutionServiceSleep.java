@@ -3,25 +3,17 @@ package executor.service.impl;
 import executor.model.Step;
 import executor.service.StepExecutionService;
 import org.openqa.selenium.WebDriver;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
+@Service
 public class StepExecutionServiceSleep implements StepExecutionService {
-    private static volatile StepExecutionServiceSleep INSTANCE;
+
     private static final String STEP_ACTION = "sleep";
 
-    private StepExecutionServiceSleep() {
-    }
+    public StepExecutionServiceSleep() {
 
-    public static StepExecutionServiceSleep getInstance() {
-        if (INSTANCE == null) {
-            synchronized (StepExecutionServiceSleep.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new StepExecutionServiceSleep();
-                }
-            }
-        }
-        return INSTANCE;
     }
 
     @Override

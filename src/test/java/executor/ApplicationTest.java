@@ -2,23 +2,11 @@ package executor;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Unit test for simple App.
- */
-public class ApplicationTest
-{
-    /**
-     * Rigorous Test :-)
-     */
-
+public class ApplicationTest {
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue(true );
+    public void shouldAnswerWithTrue() {
+        assertTrue(true);
     }
-
-
 }

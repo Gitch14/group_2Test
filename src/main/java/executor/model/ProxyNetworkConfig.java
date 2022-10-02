@@ -39,7 +39,9 @@ public class ProxyNetworkConfig {
     }
 
     @Override
-    public int hashCode() { return Objects.hash(hostname, port); }
+    public int hashCode() {
+        return Objects.hash(hostname, port);
+    }
 
     @Override
     public String toString() {
