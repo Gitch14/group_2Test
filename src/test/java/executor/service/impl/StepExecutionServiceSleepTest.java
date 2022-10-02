@@ -1,6 +1,6 @@
-package executor.service;
+package executor.service.impl;
 
-import executor.service.impl.StepExecutionServiceSleep;
+import executor.service.StepExecutionService;
 import executor.model.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class StepExecutionServiceSleepTest {
 
     @BeforeEach
     void setUp() {
-        stepExecutionService = StepExecutionServiceSleep.getInstance();
+        stepExecutionService = new StepExecutionServiceSleep();
         step = new Step(STEP_EXECUTION_EXPECTED, "5");
     }
 
@@ -25,13 +25,13 @@ class StepExecutionServiceSleepTest {
     }
 
     @Test
-    void step() throws InterruptedException {
+    void step() {
         int expected = Integer.parseInt(step.getValue());
 
         long start = System.currentTimeMillis();
         stepExecutionService.step(null, step);
         long finish = System.currentTimeMillis();
-        int actual = (int) (finish-start)/ 1000;
+        int actual = (int) (finish - start) / 1000;
         assertEquals(expected, actual, "Sleep works incorrectly");
     }
 }

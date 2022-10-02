@@ -1,6 +1,7 @@
 package executor.service.impl;
 
 import executor.model.Scenario;
+import executor.util.ObjectMapperUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Queue;
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScenarioSourceListenerServiceTest {
 
-    private final ScenarioSourceListenerService scenarioSourceListener = new ScenarioSourceListenerService();
+    private final ScenarioSourceListenerService scenarioSourceListener = new ScenarioSourceListenerService(new ObjectMapperUtil());
 
     @Test
     void execute() {

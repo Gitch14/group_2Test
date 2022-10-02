@@ -1,8 +1,8 @@
 package executor.model;
 
 public class ProxyCredentials {
-        private String username;
-        private String password;
+    private String username;
+    private String password;
 
     public ProxyCredentials(String username, String password) {
         this.username = username;

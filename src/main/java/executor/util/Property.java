@@ -2,57 +2,65 @@ package executor.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
+@Service
 public class Property {
     final static Logger logger = LogManager.getLogger(Property.class);
-    Properties property = new Properties();
 
+    @Value("${ProxyConfigHolder.ProxyCredentials.username}")
+    private String username;
 
-    public List connect() {
-        List<String> list = null;
-        try (FileInputStream file = new FileInputStream("src/main/resources/settings.properties")) {
-            property.load(file);
+    @Value("${ProxyConfigHolder.ProxyCredentials.password}")
+    private String password;
 
-            String username = property.getProperty("ProxyConfigHolder.ProxyCredentials.username");
-            String password = property.getProperty("ProxyConfigHolder.ProxyCredentials.password");
-            String hostname = property.getProperty("ProxyConfigHolder.ProxyNetworkConfig.hostname");
-            String port = property.getProperty("ProxyConfigHolder.ProxyNetworkConfig.port");
-            String webDriverExecutable = property.getProperty("WebDriverConfig.webDriverExecutable");
-            String userAgent = property.getProperty("WebDriverConfig.userAgent");
-            String pageLoadTimeout = property.getProperty("WebDriverConfig.pageLoadTimeout");
-            String implicitlyWait = property.getProperty("WebDriverConfig.implicitlyWait");
+    @Value("${ProxyConfigHolder.ProxyNetworkConfig.hostname}")
+    private String hostname;
 
-            logger.info(
-                    "username: " + username
-                            + ", password: " + password
-                            + ", host: " + hostname
-                            + ", port: " + port
-                            + ", webDriverExecutable: " + webDriverExecutable
-                            + ", userAgent: " + userAgent
-                            + ", pageLoadTimeout: " + pageLoadTimeout
-                            + ", implicitlyWait: " + implicitlyWait);
-            list = new ArrayList<>();
-            list = Arrays.asList(username, password, hostname, port, webDriverExecutable, userAgent, pageLoadTimeout, implicitlyWait);
+    @Value("${ProxyConfigHolder.ProxyNetworkConfig.port}")
+    private String port;
 
+    @Value("${WebDriverConfig.webDriverExecutable}")
+    private String webDriverExecutable;
 
-        } catch (
-                IOException e) {
-            System.err.println("Error file not found");
-        }
-        return list;
+    @Value("${WebDriverConfig.userAgent}")
+    private String userAgent;
+
+    @Value("${WebDriverConfig.pageLoadTimeout}")
+    private String pageLoadTimeout;
+
+    @Value("${WebDriverConfig.implicitlyWait}")
+    private String implicitlyWait;
+
+    public Property() {
+
+    }
+
+    public List<String> connect() {
+
+        logger.info(new StringBuilder()
+                .append("username: ")
+                .append(username)
+                .append(", port: ")
+                .append(port)
+                .append(", webDriverExecutable: ")
+                .append(webDriverExecutable)
+                .append(", userAgent: ")
+                .append(userAgent)
+                .append(", pageLoadTimeout: ")
+                .append(pageLoadTimeout)
+                .append(", implicitlyWait: ").toString());
+
+        return Arrays.asList(username, password, hostname, port, webDriverExecutable,
+                userAgent, pageLoadTimeout, implicitlyWait);
     }
 
     @Override
     public String toString() {
-        return "Property{" +
-                "property=" + property +
-                '}';
+        return connect().toString();
     }
 }
