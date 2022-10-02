@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ThreadPoolConfigTest {
 
     @Test
-    public void ThreadPoolConfigTest() {
+    public void threadPoolConfigTest() {
         ThreadPoolConfig th1 = new ThreadPoolConfig(10, 1_000_000_000L);
         ThreadPoolConfig th2 = new ThreadPoolConfig(10, 1_000_000_000L);
         assertEquals(th1, th2);
