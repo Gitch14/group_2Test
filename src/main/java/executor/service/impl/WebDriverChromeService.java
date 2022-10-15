@@ -1,6 +1,7 @@
 package executor.service.impl;
 
 import executor.service.WebDriverInitializerService;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -39,11 +40,7 @@ public class WebDriverChromeService implements WebDriverInitializerService {
     }
 
     static {
-        String chromedriverPath = "src/main/resources/chromedriver";
-        if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            chromedriverPath += ".exe";
-        }
-        System.setProperty("webdriver.chrome.driver", chromedriverPath);
+        WebDriverManager.chromedriver().setup();
     }
 
     @Override
