@@ -6,41 +6,44 @@ import executor.util.ObjectMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.*;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service
-public class ScenarioSourceListenerService implements ScenarioSourceListener {
-
+public class ScenarioSourceListenerService implements ScenarioSourceListener
+{
+    
     private ObjectMapperUtil objectMapperUtil;
-
+    
     @Autowired
-    public ScenarioSourceListenerService(ObjectMapperUtil objectMapperUtil) {
+    public ScenarioSourceListenerService(ObjectMapperUtil objectMapperUtil)
+    {
         this.objectMapperUtil = objectMapperUtil;
     }
-
-    public ScenarioSourceListenerService() {
-
+    
+    public ScenarioSourceListenerService()
+    {
+    
     }
-
+    
     @Override
-    public Queue<Scenario> execute() {
+    public Queue<Scenario> execute()
+    {
         Queue<Scenario> scenarios = new ConcurrentLinkedQueue<>();
-        try {
-            URL resource = this.getClass().getClassLoader().getResource("scenarios.json");
-
-            if (resource != null) {
-                File file = new File(resource.toURI());
-                scenarios.addAll(List.of(objectMapperUtil.getObjectMapper().readValue(file, Scenario[].class)));
-            }
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
+        
+        try (InputStream in = getClass().getResourceAsStream("/scenarios.json");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(in)))
+        {
+            scenarios.addAll(List.of(objectMapperUtil.getObjectMapper().readValue(reader, Scenario[].class)));
         }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+        
+        
         return scenarios;
     }
 }
