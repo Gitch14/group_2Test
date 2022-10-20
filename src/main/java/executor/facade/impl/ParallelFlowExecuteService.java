@@ -2,6 +2,9 @@ package executor.facade.impl;
 
 import executor.facade.ParallelFlowExecute;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -21,18 +24,11 @@ public class ParallelFlowExecuteService implements ParallelFlowExecute {
 
     }
 
-    @Override
-    public synchronized void parallelExecute(Runnable task) {
-        this.parallelExecute(task, null);
-    }
+    public void parallelExecute(Runnable task) {
 
-    protected void parallelExecute(Runnable task, Runnable testCallBack) {
-        if (testCallBack != null) {
-            testCallBack.run();
-        } else {
             ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
                     corePoolSize, keepAliveTime, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
-            threadPoolExecutor.submit(task);
-        }
+            threadPoolExecutor.submit(new Worker());
+
     }
 }
