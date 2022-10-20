@@ -26,9 +26,9 @@ public class ParallelFlowExecuteService implements ParallelFlowExecute {
 
     public void parallelExecute(Runnable task) {
 
-            ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
-                    corePoolSize, keepAliveTime, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
-            threadPoolExecutor.submit(new Worker());
-
+            ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10,
+                    10, 5, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+          //  threadPoolExecutor.submit(new Worker());
+            threadPoolExecutor.shutdown();
     }
 }
